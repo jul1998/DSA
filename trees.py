@@ -91,13 +91,29 @@ class BinarySearchTree:
         itr = self.root
         while itr:
             if value > itr.data:
-                if value == itr.right:
+                if value == itr.data:
                     return True
                 else:
                    itr = itr.right
             else:
                 if value == itr.data:
                     return True
+                else:
+                    itr = itr.left
+        return False
+
+    def remove(self, value):
+        itr = self.root
+        while itr:
+            if value >= itr.data:
+                if value == itr.data:
+                    itr.data = itr.right
+                    return True
+                else:
+                    itr = itr.right
+            else:
+                if value == itr.data:
+                    itr.data = itr.left
                 else:
                     itr = itr.left
         return False
@@ -109,5 +125,8 @@ tree.insert(20)
 tree.insert(170)
 tree.insert(1)
 tree.insert(6)
-print(tree.lookup(9))
+print(tree.lookup(170))
+print(tree.remove(20))
+print(tree.remove(1))
+print(tree.insert(6))
 # tree.insert(9)
