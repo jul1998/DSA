@@ -118,6 +118,34 @@ class BinarySearchTree:
                     itr = itr.left
         return False
 
+    def breathFirstSearch(self):
+        current_node = self.root
+        myList = []
+        myQ = []
+
+        myQ.append(current_node)
+
+        while len(myQ)> 0:
+            current_node = myQ.pop(0)
+            print(current_node.data)
+            myList.append(current_node.data)
+            if current_node.left:
+                myQ.append(current_node.left)
+            if current_node.right:
+                myQ.append(current_node.right)
+        print(myList)
+
+    def breathFirstSearchR(self, myQ,myList):
+        if not myQ:
+            print(myList)
+        current_node = myQ.pop(0)
+        if current_node.left:
+            myQ.append(current_node.left)
+        if current_node.right:
+            myQ.append(current_node.right)
+        self.breathFirstSearchR(myQ, myList)
+
+
 tree = BinarySearchTree()
 tree.insert(9)
 tree.insert(4)
@@ -125,8 +153,7 @@ tree.insert(20)
 tree.insert(170)
 tree.insert(1)
 tree.insert(6)
-print(tree.lookup(170))
-print(tree.remove(20))
-print(tree.remove(1))
-print(tree.insert(6))
+tree.insert(10)
+tree.breathFirstSearch()
+tree.breathFirstSearchR([tree.root], [])
 # tree.insert(9)
